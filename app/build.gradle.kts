@@ -9,8 +9,8 @@ android {
         applicationId = "com.kamaal.padkeys"
         minSdk = 31
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.1.1"
     }
     // Release signing reads from ~/.gradle/gradle.properties (never committed). Without those
     // properties, release builds are unsigned and debug builds work as usual.
