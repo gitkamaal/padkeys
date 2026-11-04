@@ -132,6 +132,18 @@ class KeyboardView @JvmOverloads constructor(
         return side
     }
 
+    /** Put both cursors back on the home keys (F and J) and make the left one active. */
+    fun resetCursors() {
+        placeOn(leftCursor, "f", CursorSide.LEFT)
+        placeOn(rightCursor, "j", CursorSide.RIGHT)
+        clamp(CursorSide.LEFT)
+        clamp(CursorSide.RIGHT)
+        resolve(CursorSide.LEFT)
+        resolve(CursorSide.RIGHT)
+        activeSide = CursorSide.LEFT
+        invalidate()
+    }
+
     /** Key currently under the given cursor, or null if none. */
     fun keyUnder(side: CursorSide): Key? = (cursor(side).cell ?: resolve(side))?.key
 

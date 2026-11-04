@@ -1,0 +1,32 @@
+name: Device report
+description: Tell us how PadKeys works on your handheld
+labels: [device-report]
+body:
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      placeholder: AYN Thor, Retroid Pocket 6, Anbernic RG406H...
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android version
+      placeholder: "14"
+  - type: checkboxes
+    id: works
+    attributes:
+      label: What works?
+      options:
+        - label: Keyboard opens when a text field is focused
+        - label: Left and right sticks move the cursors
+        - label: D-pad moves the cursor
+        - label: A types, B deletes, X adds a space
+        - label: LT shift and RT enter
+        - label: L1 / R1 switch to symbols
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything off?
+      description: Buttons that do the wrong thing, apps where it doesn't open, layout problems. Screenshots help.

@@ -55,6 +55,10 @@ class PadKeysImeService : InputMethodService() {
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
         inputVisible = true
+        if (!restarting) { // every new text field starts on the home keys
+            keyboard?.resetCursors()
+            controller?.onCursorsReset()
+        }
         keyboard?.setTheme(Themes.load(this)) // picked up live from the settings screen
         keyboard?.setShiftState(shift)
         Log.i(TAG, "input view shown inputType=${info?.inputType} imeOptions=${info?.imeOptions}")

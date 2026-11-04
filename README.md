@@ -6,7 +6,11 @@ An Android keyboard you can type on with a gamepad. Built for handhelds with bui
 
 There are two cursors, one per stick, so you can type with both thumbs the way you would on a Steam Deck. The sticks and d-pad move key by key. They don't drag a mouse pointer around.
 
-![PadKeys in the Midnight theme](docs/screenshots/keyboard-midnight.png)
+![Typing "Zelda" using only the sticks and the A button](docs/demo.gif)
+
+**Private by design:** PadKeys asks for no permissions at all, not even internet access, so nothing you type can leave your device. It's open source, so you can check that yourself.
+
+**Tested on:** AYN Odin 3 (Android 15). It should work on any Android 12+ handheld, including the AYN Thor and Odin 2, Retroid Pocket and Anbernic Android devices. If you try it on one of those, please [open an issue](../../issues) to say how it went.
 
 ## Controls
 
@@ -26,7 +30,7 @@ There are two cursors, one per stick, so you can type with both thumbs the way y
 | Select | Short press: numbers page. Hold: close the keyboard |
 | Y / Start | Also shift / enter |
 
-Both cursors can move across the whole keyboard. Keys that have a controller shortcut show it in their corner, and a strip above the keys lists the main buttons.
+Both cursors can move across the whole keyboard, and every time you focus a new text field they start on F and J. Keys that have a controller shortcut show it in their corner, and a strip above the keys lists the main buttons.
 
 While the keyboard is open it takes controller input, so the app underneath doesn't get it. Back and Home still reach the system. Once the keyboard closes, your controller goes back to the game or app.
 
@@ -52,7 +56,7 @@ To add your own theme, add a `KeyboardTheme` to [`Themes.kt`](app/src/main/java/
 
 Requires Android 12 (API 31) or newer.
 
-**From a release:** download the APK from [Releases](../../releases), install it, open **PadKeys** and tap **Enable**, then **Set as default**.
+**From a release:** download `padkeys-<version>.apk` from [Releases](../../releases/latest), install it, open **PadKeys** and tap **Enable**, then **Set as default**. Android shows its standard warning that a keyboard can collect what you type. That's true of every keyboard, and PadKeys has no internet access to send anything anywhere.
 
 **From source** with the device connected over adb:
 
@@ -80,6 +84,8 @@ All button bindings and timings (stick thresholds, repeat delays, long-press len
 ./gradlew :app:assembleDebug :app:lintDebug
 python3 scripts/screenshots.py   # regenerate docs/screenshots on a connected device
 ```
+
+Release builds are minified and signed with a key that lives outside the repo. To make your own, add `PADKEYS_STORE_FILE`, `PADKEYS_STORE_PASSWORD`, `PADKEYS_KEY_ALIAS` and `PADKEYS_KEY_PASSWORD` to `~/.gradle/gradle.properties`, then run `./gradlew :app:assembleRelease`. Without them, the release APK is built unsigned.
 
 ## License
 

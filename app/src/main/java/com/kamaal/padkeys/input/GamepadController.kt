@@ -206,6 +206,9 @@ class GamepadController(
         stick.repeat?.let(handler::removeCallbacks)
         stick.repeat = null; stick.col = 0; stick.row = 0
     }
+    /** Called when the view's cursors go back to the home keys: A targets the left cursor again. */
+    fun onCursorsReset() = setActive(CursorSide.LEFT)
+
     fun reset() {
         handler.removeCallbacksAndMessages(null); held.clear(); directions.clear(); repeats.clear()
         triggerSources.forEach { it.clear() }; triggerDown.fill(false); triggerRelease.fill(null)
